@@ -28,7 +28,6 @@ void GpioManager::toggle(unsigned int gpio_num) {
     bool current = states[gpio_num];
     gpio_register.at(gpio_num).set_value(!current);
     states[gpio_num] = !current;
-    std::this_thread::sleep_for(std::chrono::seconds(1));// change this
 }
 
 void GpioManager::blink(unsigned int gpio_num, unsigned int times, unsigned int ms_delay) {

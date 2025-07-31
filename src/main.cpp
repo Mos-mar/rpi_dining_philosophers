@@ -11,38 +11,23 @@
 
 
 
-//5 ARGUMENTS EXPECTED AT ALL TIMES
-int main(int argc, char* argv) {   
-    GpioManager g1,g2,g3;
+//5 ARGUMENTS MAX EXPECTED AT ALL TIMES
+int main(int argc, char** argv) {  
 
-    std::thread t1(
-        [&g1](){
-        g1.init_pin(26,"GREEN!");
-        //g1.blink(26,50,85);
-        g1.set_high(26);
-        
-    });
+//Follow order of declaration to initiate the arguments of the program
+    int number_of_philosophers = std::stoi(argv[1]);
+    int time_to_die = std::stoi(argv[2]);
+    int time_to_eat = std::stoi(argv[3]);
+    int time_to_sleep = std::stoi(argv[4]);
+    int number_of_times_each_philosopher_must_eat= std::stoi(argv[5]);
+    
+    DinerManager diner(number_of_philosophers,time_to_die,time_to_eat,time_to_sleep,number_of_times_each_philosopher_must_eat);
+    diner.startAll();
+    diner.joinAll();
+    diner.stopAll();
 
-    std::thread t2(
-        [&g2](){
-        g2.init_pin(19,"YELLOW!");
-        g2.set_high(19);
-    });
 
-     std::thread t3(
-        [&g3](){
-        g3.init_pin(16,"BLUE!");
-        //g3.blink(16,50,85);
-        g3.set_high(16);
-        
-    });
-
-    t1.join();
-    t2.join();  
-    t3.join();
-    g2.set_low(19);
-    g1.set_low(26);
-    g3.set_low(16);
+ 
 }
 
 

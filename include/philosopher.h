@@ -16,7 +16,7 @@
         private:
         int id; //we will use gpio num for id
         std::string name;
-        int number_of_philosophers;
+   
         int time_to_die;
         int time_to_eat;
         int time_to_sleep;
@@ -30,8 +30,8 @@
         std::atomic<bool>& stop;// each thread has access to this object without data race possible
 
         public:
-        Philosopher(std::string name,int id,int number_of_philosophers ,int time_to_die,int time_to_eat, int time_to_sleep,
-            int number_of_times_each_philosopher_must_eat,std::atomic<bool>& stop,std::shared_ptr<std::mutex> left, std::shared_ptr<std::mutex> right);
+        Philosopher(const std::string& name,int id,int time_to_die,int time_to_eat, int time_to_sleep,
+                    int number_of_times_each_philosopher_must_eat,std::atomic<bool>& stop,std::shared_ptr<std::mutex> left, std::shared_ptr<std::mutex> right);
 
         void start(); //start thread
         void join(); // wait for thread
