@@ -27,11 +27,9 @@ void Philosopher::think() {
 
 void Philosopher::eat() {
     std::cout << name << " is trying to eat\n";
-    {
-        std::scoped_lock lock(*left, *right);
-        std::cout << name << " is eating\n";
-        gpio->blink(id, this->number_of_times_each_philosopher_must_eat, this->time_to_eat); 
-    } // Forks released here
+    std::scoped_lock lock(*left, *right);
+    std::cout << name << " is eating\n";
+    gpio->blink(id, this->number_of_times_each_philosopher_must_eat, this->time_to_eat); 
 }
 
 void Philosopher::sleep() {

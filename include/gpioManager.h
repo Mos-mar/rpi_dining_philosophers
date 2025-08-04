@@ -8,7 +8,7 @@ class GpioManager {
 private:
     gpiod::chip chip;
     std::unordered_map<unsigned int, gpiod::line> gpio_register;
-    std::unordered_map<unsigned int, bool> states; //pour toggle()
+    std::unordered_map<unsigned int, bool> states; //used for toggle() method
     
 public:
     GpioManager(const std::string& chip_name = "gpiochip0");
