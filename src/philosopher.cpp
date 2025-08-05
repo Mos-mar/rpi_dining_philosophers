@@ -45,6 +45,7 @@ void Philosopher::start() {
 void Philosopher::run() {
     int meals_eaten = 0;
     auto last_meal_time = std::chrono::steady_clock::now();
+    //Number_of_times_each_philosopher_must_eat == -1 if unlimited times to eat
     while (!stop && (this->number_of_times_each_philosopher_must_eat == -1 || meals_eaten < this->number_of_times_each_philosopher_must_eat)) {
         think();
         eat();
